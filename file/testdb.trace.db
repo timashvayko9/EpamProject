@@ -1,0 +1,33 @@
+2019-09-27 23:35:24 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "DELETE *[*] FROM NOTE WHERE NOTE = 'qwe' "; ожидалось "identifier"
+Syntax error in SQL statement "DELETE *[*] FROM NOTE WHERE NOTE = 'qwe' "; expected "identifier"; SQL statement:
+delete * from note where note = 'qwe' [42001-199]
+2019-09-27 23:35:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "OBJECT" не найдена
+Table "OBJECT" not found; SQL statement:
+delete object from note where note = 'qwe' [42102-199]
+2019-09-28 16:58:28 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM NOTE 
+DELETE FROM[*] NOTE WHERE NOTE = 'qwe' "
+Syntax error in SQL statement "SELECT * FROM NOTE 
+DELETE FROM[*] NOTE WHERE NOTE = 'qwe' "; SQL statement:
+SELECT * FROM NOTE 
+delete from note where note = 'qwe' [42000-199]
+2019-09-28 16:58:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM NOTE 
+
+DELETE FROM[*] NOTE WHERE NOTE = 'qwe' "
+Syntax error in SQL statement "SELECT * FROM NOTE 
+
+DELETE FROM[*] NOTE WHERE NOTE = 'qwe' "; SQL statement:
+SELECT * FROM NOTE 
+
+delete from note where note = 'qwe' [42000-199]
+2019-10-06 22:29:17 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "DELETE *[*] FROME NOTE "; ожидалось "identifier"
+Syntax error in SQL statement "DELETE *[*] FROME NOTE "; expected "identifier"; SQL statement:
+delete * frome note [42001-199]
+2019-10-06 22:29:21 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "DELETE *[*] FROM NOTE "; ожидалось "identifier"
+Syntax error in SQL statement "DELETE *[*] FROM NOTE "; expected "identifier"; SQL statement:
+delete * from note [42001-199]

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <strong>Project by Timas</strong>
+            </a>
+        </div>
+    </div>
+</header>
+<div>
+    <form method="get" action="/content/edit">
+        <textarea th:text="${content}" th:name="text"></textarea>
+        <input type="hidden" th:name="path" th:value="${path}">
+        <input type="submit" th:value="Save">
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <div class="navbar-brand d-flex align-items-center">
+                <strong>Project by Timas</strong>
+            </div>
+            `
+        </div>
+    </div>
+</header>
+<div class="m-5">
+    <form method="post" action="/main/upload" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="downloadFileHelp">Select file to upload to brose</label>
+            <input style="width: 55%; border: none; padding: 0" th:type="file" th:name="file" class="form-control"
+                   id="fileName"
+                   aria-describedby="downloadFileNameHelp" placeholder="Choose a file">
+            <small id="downloadFileHelp">Enter a file name or select file</small>
+        </div>
+        <button type="submit" class="btn btn-dark">Download file</button>
+    </form>
+</div>
+
+<div class="m-5">
+    <form method="get" action="/main/create">
+        <div class="form-group">
+            <label>Create file or folder</label>
+            <input style="width: 40%" th:type="text" th:name="name" class="form-control" aria-describedby="fileNameHelp"
+                   placeholder="Enter a file/folder name">
+            <input type="checkbox" name="isDirectory" value="true">
+            <small class="form-text text-muted">Check if you want to create a folder</small>
+        </div>
+        <button type="submit" class="btn btn-dark">Create file/folder</button>
+    </form>
+</div>
+
+<div class="m-5">
+    <span style="font-size: 40px ">Сurrent directory</span>
+</div>
+
+<div>
+    <ul>
+        <li class="m-4" th:each="folder:${folders}">
+            <form method="get" style="width: 15%; display: inline-block">
+                <button style="font-size: 14px" class="btn btn-primary" type="submit" th:name="path" th:text="${folder}"
+                        th:value="${folder}"></button>
+            </form>
+            <form th:if="${!folder.equals('...')}" method="post" action="/main/delete"
+                  style="width: 15%; display: inline-block">
+                <button class="btn btn-danger" th:type="submit" th:name="name" th:value="${folder}">delete</button>
+            </form>
+            <form th:if="${!folder.equals('...')}" method="get" action="/main/note/create">
+                <input type="text" name="note">
+                <button style="height: 29px;line-height: 10px; margin-bottom: 4px;" type="submit" th:name="path"
+                        th:value="${folder}" class="btn btn-warning"> create note
+                </button>
+            </form>
+            <div th:each="note:${notes}" th:if="${note.getPath().equals(folder)}">
+                <p th:text="${note.getNote()}"></p>
+                <form method="get" action="/main/note/delete">
+                    <button style="height: 29px;line-height: 10px; margin-bottom: 4px;" type="submit" th:name="path"
+                            th:value="${note.getPath()}" class="btn btn-danger">delete note
+                    </button>
+                </form>
+            </div>
+        </li>
+    </ul>
+    <ul>
+        <li class="m-4" th:each="file:${files}">
+            <form method="get" style="width: 15%; display: inline-block" target="_blank">
+                <button class="btn btn-info" th:type="submit" th:name="path" th:value="${file}"
+                        th:text="${file}"></button>
+            </form>
+            <form method="get" action="/main/download"
+                  style="width: 15%; display: inline-block">
+                <button th:type="submit" th:name="filename" th:value="${file}" class="btn btn-success">download</button>
+            </form>
+            <form method="post" action="/main/delete" style="width: 15%; display: inline-block">
+                <button class="btn btn-danger" th:type="submit" th:name="name" th:value="${file}">delete</button>
+            </form>
+            <form method="get" action="/main/note/create" th:if="${!hasnotes.contains(file)}">
+                <input type="text" name="note">
+                <button style="height: 29px;line-height: 10px; margin-bottom: 4px;" type="submit" th:name="path"
+                        th:value="${file}" class="btn btn-warning">create note
+                </button>
+            </form>
+            <div th:each="note:${notes}" th:if="${note.getPath().equals(file)}">
+                <p th:text="${note.getNote()}"></p>
+                <form method="get" action="/main/note/delete">
+                    <button style="height: 29px;line-height: 10px; margin-bottom: 4px;" type="submit" th:name="path"
+                            th:value="${note.getPath()}" class="btn btn-danger">delete note
+                    </button>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+
